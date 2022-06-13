@@ -3,6 +3,7 @@
     "description": "Rest client for PontoIcarus API",
     "type": "library",
     "minimum-stability": "stable",
+    "license": "MIT",
     "require": {
         "php": ">=7.4,<8.0",
         "guzzlehttp/guzzle": "7.*",
