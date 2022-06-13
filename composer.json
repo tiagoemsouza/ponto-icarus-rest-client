@@ -1,5 +1,6 @@
 {
     "name": "tiagoemsouza/ponto-icarus-rest-client",
+    "description": "Rest client for PontoIcarus API",
     "type": "library",
     "minimum-stability": "stable",
     "require": {
