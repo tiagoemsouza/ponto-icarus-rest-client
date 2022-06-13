@@ -13,11 +13,17 @@ class PontoIcarusAPITest extends TestCase
         parent::setUp();
     }
 
-    public function test()
+    public function test(): void
     {
         $this->expectNotToPerformAssertions();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $path
+     * @return array<string, string>
+     */
     protected function loadFixtures(string $path): array
     {
         $filename = __DIR__ . '/Fixture/' . $path . '.json';

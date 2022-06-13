@@ -8,10 +8,13 @@ use tiagoemsouza\PontoIcarusAPI\Entity\UsuarioLogar;
 
 class UsuarioService extends AbstractService
 {
+    
     /**
-     * Search for a CNPJ
+     * Undocumented function
      *
-     * @param string $usuario
+     * @param string $username
+     * @param string $password
+     * @param boolean $web
      * @return UsuarioLogar
      */
     public function logar(string $username, string $password, bool $web = true): UsuarioLogar

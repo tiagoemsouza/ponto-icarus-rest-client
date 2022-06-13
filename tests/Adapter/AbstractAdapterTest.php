@@ -52,7 +52,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         $this->assertEquals('backendicarus.pontoicarus.com.br', $clientConfig['base_uri']->getHost());
     }
 
-    public function testRequestBearerToken()
+    public function testRequestBearerToken(): void
     {
         $token = 'x54sd6f1sa6df51x';
 
@@ -62,7 +62,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         $mock = new MockHandler();
         $handlerStack = HandlerStack::create($mock);
         $handlerStack->push($history);
-        
+
         $adapterMock = $this->getMockForAbstractClass(
             AbstractAdapter::class,
             [new Client(['handler' => $handlerStack,])]
@@ -86,7 +86,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         }
     }
 
-    public function testLoadBearerToken()
+    public function testLoadBearerToken(): void
     {
 
         $token = 'x54sd6f1sa6df51x';
@@ -99,7 +99,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         $this->assertEquals($token, $property->getValue($this->adapter));
     }
 
-    public function testHandleErrorsAccessDenied()
+    public function testHandleErrorsAccessDenied(): void
     {
         $handleErrorsMethod = $this->adapterReflection->getMethod('handleErrors');
         $handleErrorsMethod->setAccessible(true);
@@ -108,7 +108,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         $handleErrorsMethod->invoke($this->adapter, new Response(400));
     }
 
-    public function testHandleUnauthorized()
+    public function testHandleUnauthorized():void
     {
 
         $handleErrorsMethod = $this->adapterReflection->getMethod('handleErrors');
@@ -118,7 +118,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         $handleErrorsMethod->invoke($this->adapter, new Response(401));
     }
 
-    public function testHandleErrorsForbidden()
+    public function testHandleErrorsForbidden():void
     {
         $handleErrorsMethod = $this->adapterReflection->getMethod('handleErrors');
         $handleErrorsMethod->setAccessible(true);
@@ -127,7 +127,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         $handleErrorsMethod->invoke($this->adapter, new Response(403));
     }
 
-    public function testHandleNotFound()
+    public function testHandleNotFound():void
     {
         $handleErrorsMethod = $this->adapterReflection->getMethod('handleErrors');
         $handleErrorsMethod->setAccessible(true);
@@ -136,7 +136,7 @@ final class AbstractAdapterTest extends PontoIcarusAPITest
         $handleErrorsMethod->invoke($this->adapter, new Response(404));
     }
 
-    public function testHandleInternalServerError()
+    public function testHandleInternalServerError():void
     {
         $handleErrorsMethod = $this->adapterReflection->getMethod('handleErrors');
         $handleErrorsMethod->setAccessible(true);

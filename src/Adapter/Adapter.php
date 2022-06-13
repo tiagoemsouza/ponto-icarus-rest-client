@@ -9,8 +9,8 @@ class Adapter extends AbstractAdapter
      * @inheritDoc
      *
      * @param string $path
-     * @param array $queryParams
-     * @return array
+     * @param array<string, bool|string> $queryParams
+     * @return mixed[]
      */
     public function post(string $path, array $queryParams = []): array
     {

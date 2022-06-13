@@ -29,7 +29,10 @@ final class UsuarioServiceTest extends PontoIcarusAPITest
 
     public function testLogar(): void
     {
-        $this->mock->append(new Response(200, [], json_encode(['token' => 'sdf', 'idUser' => 465])));
+
+        $json =  json_encode(['token' => 'sdf', 'idUser' => 465]);
+        $json = $json === false ? null : $json;
+        $this->mock->append(new Response(200, [], $json));
 
         $username = 'xxxx';
         $password = 'abcde';

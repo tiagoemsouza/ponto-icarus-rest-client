@@ -11,6 +11,11 @@ class RelatorioArquivoReguladoPorLei extends FlexibleDataTransferObject
 {
     public ?string $data;
 
+    /**
+     * construct
+     *
+     * @param array<string, string> $parameters
+     */
     public function __construct(array $parameters = [])
     {
         if (!empty($parameters['data'])) {
@@ -19,14 +24,22 @@ class RelatorioArquivoReguladoPorLei extends FlexibleDataTransferObject
         parent::__construct($parameters);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return array<RegistroMarcacao>
+     */
     public function getRegistrosMarcacoes()
     {
         $result = [];
         $pregPattern = '/^(\d{9})3(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})(\d{12})$/m';
+        
+        /**
+         * @var array<int, string>
+         */
+        $matches = [];
+        
         if (preg_match_all($pregPattern, $this->data, $matches, PREG_SET_ORDER, 0)) {
-            /**
-             * @var RegistroMarcacao
-             */
             foreach ($matches as $rm) {
                 $dateTimeStr = sprintf("%02d-%02d-%04d %02d:%02d:%02d", $rm[2], $rm[3], $rm[4], $rm[5], $rm[6], '00');
                 $dateTime = new DateTime($dateTimeStr);

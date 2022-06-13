@@ -10,9 +10,12 @@ class PontoService extends AbstractService
 {
 
     /**
-     * Search for a CNPJ
+     * relatorioReguladorPorlei
      *
-     * @param string $usuario
+     * @param string $dataInicio
+     * @param string $dataFim
+     * @param boolean $somenteAtivos
+     * @param string $tipo
      * @return RelatorioArquivoReguladoPorLei
      */
     public function relatorioReguladorPorlei(
