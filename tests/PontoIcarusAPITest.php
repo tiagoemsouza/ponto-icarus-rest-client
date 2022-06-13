@@ -13,7 +13,8 @@ class PontoIcarusAPITest extends TestCase
         parent::setUp();
     }
 
-    public function test(){
+    public function test()
+    {
         $this->expectNotToPerformAssertions();
     }
 
@@ -26,10 +27,10 @@ class PontoIcarusAPITest extends TestCase
         }
         $isBase64 = preg_match('/^data:text\/plain;base64,(.*)/m', $contents, $matches);
 
-        if(!$isBase64){
-            $data = json_decode($contents, true);    
-        }else{
-            $data['data'] = $matches[1];    
+        if (!$isBase64) {
+            $data = json_decode($contents, true);
+        } else {
+            $data['data'] = $matches[1];
         }
         
         return $data;

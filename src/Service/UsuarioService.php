@@ -17,7 +17,7 @@ class UsuarioService extends AbstractService
     public function logar(string $username, string $password, bool $web = true): UsuarioLogar
     {
         $data = $this->adapter->post('/usuario/logar', compact('username', 'password', 'web'));
-        $usuarioLogar = new UsuarioLogar($data);        
+        $usuarioLogar = new UsuarioLogar($data);
         return $usuarioLogar;
     }
 }

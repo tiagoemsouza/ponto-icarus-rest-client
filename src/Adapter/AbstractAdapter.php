@@ -12,14 +12,11 @@ use tiagoemsouza\PontoIcarusAPI\Exception\InternalServerErrorException;
 use tiagoemsouza\PontoIcarusAPI\Exception\NotFoundException;
 use tiagoemsouza\PontoIcarusAPI\Exception\UnauthorizedException;
 
-/**
- * Undocumented class
- */
 abstract class AbstractAdapter implements AdapterInterface
 {
 
     private const CLIENT_CONFIG = [
-        'base_uri' => 'https://backendicarus.pontoicarus.com.br',            
+        'base_uri' => 'https://backendicarus.pontoicarus.com.br',
     ];
 
     private const DEFAULT_OPTIONS = [
@@ -33,9 +30,9 @@ abstract class AbstractAdapter implements AdapterInterface
 
     protected string $bearerToken;
 
-    public function __construct(?Client $client=null)
+    public function __construct(?Client $client = null)
     {
-        if($client == null){
+        if ($client == null) {
             $client = new Client(self::CLIENT_CONFIG);
         }
 
@@ -60,17 +57,17 @@ abstract class AbstractAdapter implements AdapterInterface
 
         $options = self::DEFAULT_OPTIONS;
 
-        if(!empty($this->bearerToken)){
+        if (!empty($this->bearerToken)) {
             $options['headers']['Authorization'] = "Bearer " . $this->bearerToken;
         }
 
-        if(!empty($queryParams)){
+        if (!empty($queryParams)) {
             $options['body'] = json_encode($queryParams);
         }
 
         $response = $this->client->request($method, $path, $options);
 
-        $this->handleErrors($response);        
+        $this->handleErrors($response);
 
         return $this->parseResponseBody($response);
     }
@@ -96,7 +93,7 @@ abstract class AbstractAdapter implements AdapterInterface
         if ($response->getStatusCode() === 403) {
             throw new ForbiddenException($response);
         }
-        
+
         if ($response->getStatusCode() === 404) {
             throw new NotFoundException($response);
         }
@@ -118,12 +115,12 @@ abstract class AbstractAdapter implements AdapterInterface
 
         $isBase64 = preg_match('/^data:text\/plain;base64,(.*)/m', $responseBodyContent, $matches);
 
-        if(!$isBase64){
-            $data = json_decode($responseBodyContent, true);    
-        }else{
-            $data['data'] = $matches[1];    
+        if (!$isBase64) {
+            $data = json_decode($responseBodyContent, true);
+        } else {
+            $data['data'] = $matches[1];
         }
-        
+
         $data = is_array($data) ? $data : [$data];
 
         return $data;

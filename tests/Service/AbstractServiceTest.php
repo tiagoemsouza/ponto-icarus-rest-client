@@ -27,7 +27,6 @@ final class AbstractServiceTest extends PontoIcarusAPITest
         $adapterReflection = $serviceReflection->getProperty('adapter');
         $adapterReflection->setAccessible(true);
 
-        $this->assertInstanceOf( Adapter::class, $adapterReflection->getValue($service));
-
+        $this->assertInstanceOf(Adapter::class, $adapterReflection->getValue($service));
     }
 }

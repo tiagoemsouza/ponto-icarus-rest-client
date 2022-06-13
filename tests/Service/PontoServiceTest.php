@@ -32,14 +32,29 @@ final class PontoServiceTest extends PontoIcarusAPITest
 
     public function test(): void
     {
-        $body = 'data:text/plain;base64,MDAwMDAwMDAwMTEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDBCUjUxMjAyMDAwMTIwMi03MjYwNTIwMjIyNjA1MjAyMjA5MDYyMDIyMTQ1MAowMDMxNDc4MjYzMjYwNTIwMjIxNDUwMDczODg3NzQ1NjE1CjAwMzE1MTMxOTMyNjA1MjAyMjE3NTYwNzM4ODc3NDU2MTUKOTk5OTk5OTk5MDAwMDAwMDAwMDAwMDAwMDAyMDAwMDAwMDAwMDAwMDAwMDAwOQo=';
+        $body = <<<EOT
+            data:text/plain;base64,MDAwMDAwMDAwMTEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCAgIC
+            AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA
+            gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+            ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDBCUjUxMjAyMDAwMTIwMi03MjYwNTIwMjIyN
+            jA1MjAyMjA5MDYyMDIyMTQ1MAowMDMxNDc4MjYzMjYwNTIwMjIxNDUwMDczODg3NzQ1NjE1CjAwMz
+            E1MTMxOTMyNjA1MjAyMjE3NTYwNzM4ODc3NDU2MTUKOTk5OTk5OTk5MDAwMDAwMDAwMDAwMDAwMDA
+            yMDAwMDAwMDAwMDAwMDAwMDAwOQo=
+        EOT;
         $this->mock->append(new Response(200, [], $body));
 
         $dataFim = "2022-05-26T23:59:59.999Z";
         $dataInicio = "2022-05-26T07:00:00.000Z";
         $somenteAtivos = false;
         $tipo = "AFD";
-        $relatorioArquivoReguladoPorLei = $this->pontoService->relatorioReguladorPorlei($dataInicio, $dataFim, $somenteAtivos, $tipo);
+
+        $relatorioArquivoReguladoPorLei = $this->pontoService->relatorioReguladorPorlei(
+            $dataInicio,
+            $dataFim,
+            $somenteAtivos,
+            $tipo
+        );
+        
         $this->assertInstanceOf(RelatorioArquivoReguladoPorLei::class, $relatorioArquivoReguladoPorLei);
     }
 }

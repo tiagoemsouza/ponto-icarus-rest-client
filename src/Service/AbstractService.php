@@ -15,5 +15,4 @@ abstract class AbstractService
     {
         $this->adapter = $adapter;
     }
-
 }
