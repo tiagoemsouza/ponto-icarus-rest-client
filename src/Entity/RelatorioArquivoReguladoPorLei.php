@@ -32,7 +32,7 @@ class RelatorioArquivoReguladoPorLei extends FlexibleDataTransferObject
     public function getRegistrosMarcacoes()
     {
         $result = [];
-        $pregPattern = '/^(\d{9})3(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})(\d{12})$/m';
+        $pregPattern = '/^(\d{9})3(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})(\d{12})(\r\n)/m';
         
         /**
          * @var array<int, string>
